@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calcular Zona Fresnel</title>
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-image: url('images/bg.png'); background-size: cover;">
+
+  <nav class="bg-primary text-center font-weight-bold">
+    <a class="navbar-brand" style="height: 100%; color: white; " href="#">
+      Calcular Zona de Fresnel
+    </a>
+  </nav>
+  <div class="Container d-flex mt-3">
+    <img class="float-start mx-auto d-block" style="width: 20%; height: 30%;" src="images/antena.png" alt="">
+    <img class="float-start mx-auto d-block" style="width: 40%; height: 40%;" src="images/Fresnel.png" alt="">
+    <img class="float-start mx-auto d-block" style="width: 20%; height: 30%;" src="images/antena.png" alt="">
+  </div>
+  <div class="container p-5 mt-5 bg-primary" style="margin-top: 15px; border: 15px; border-style: none; border-radius: 12%;">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Distancia (KM)</span>
+          </div>
+          <input type="number" id="distancia" class="form-control" placeholder="Ingrese Distancia" autocomplete="off">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Frecuencia (GHz)</span>
+          </div>
+          <input type="number" id="frecuencia" class="form-control" placeholder="Ingrese Frecuencia" autocomplete="off">
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <button type="button" class="btn btn-xs btn-secondary" onclick="limpiar();">Limpiar</button>
+          <button type="button" class="btn btn-xs btn-success" onclick="calcular();">Calcular</button>
+        </div>
+      </div>
+    </div>
+    <div id="ko-model" class="row justify-content-center" style="margin-top: 15px;">
+      <!-- ko if: koModel.arrayCalculos().length > 0 -->
+      <div class="col-8 " >
+        <h3 style="color: white;">Resultados</h3>
+        <div data-bind="foreach: arrayCalculos">
+            <div style="display: flex; flex-direction: column; margin-top: 10px; color: white">
+              <div data-bind="text: `Distancia: ${distancia} Km`"></div>
+              <div data-bind="text: `Frecuencia: ${frecuencia} GHz`"></div>
+              <div data-bind="text: `Resultado: ${resultado} metros`"></div>
+            </div>
+        </div>
+      </div>
+      <!-- /ko -->
+    </div>
+  </div>
+
+  <!-- Bootstrap 4 JS-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- knockout-->
+  <script src="knockout-3.5.0.js"></script>
+
+  <!-- Mi plugin JS -->
+  <script src="main.js"></script>
+
+  <script>
+    ko.applyBindings(koModel, document.getElementById('ko-model'));
+  </script>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer class="bg-primary" style="width: 100%; height: 8%; color: white; text-align: center; text-size-adjust: 15px;">
+      <a  style="color: white;" href="">Más información sobre la Zona de Fresnel</a>
+      <div>© Ignacio Lopez Medina - 2022</div>
+</footer>
+</html>
